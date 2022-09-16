@@ -27,6 +27,11 @@ $index-bg-color: rgb(78, 108, 180);
 
 }
 
+*::selection {
+    background-color: orange;
+    color: black;
+}
+
 //Dark mode
 @media (prefers-color-scheme: dark) {
     //SASS variables 
@@ -58,6 +63,10 @@ $index-bg-color: rgb(78, 108, 180);
 
     }
 
+    *::selection {
+        background-color: blue;
+        color: white;
+    }
 }
 
 //Maps 
@@ -130,14 +139,55 @@ body {
 
     min-height: 100vh;
     font-family: 'Poppins';
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    @include mobile-only {
+        overflow-y: auto;
+    }
 }
 
 button {
+    z-index: 3;
     border: none;
     background-color: transparent;
+    transition: background-color 150ms ease-out;
+
 
     &:hover {
         cursor: pointer;
+        background-color: var(--btn-bg-color--hover);
+    }
+
+    &:active {
+        background-color: var(--btn-bg-color--active);
+    }
+}
+
+//
+@keyframes slideOut {
+    from {
+        translate: 0 0;
+        opacity: 1;
+
+    }
+
+    to {
+        translate: -100% 0%;
+        opacity: 0;
+
+    }
+}
+
+@keyframes slideIn {
+    from {
+        translate: 100% 0;
+        opacity: 0;
+    }
+
+    to {
+        translate: 0 0;
+        opacity: 1;
     }
 }
 
@@ -147,7 +197,7 @@ button {
 
     &__cards-index-container {
         min-height: inherit;
-        @include center-flex-column(20px)
+        @include center-flex-column(20px);
     }
 
 
@@ -165,7 +215,7 @@ button {
         aspect-ratio: 1/1;
         height: 10px;
         border-radius: 50%;
-        opacity: 75%;
+        opacity: 35%;
     }
 
     &__buttons {
@@ -180,19 +230,46 @@ button {
             position: absolute;
             top: -250px;
 
+            // &:hover {
+            //     background-color: var(--btn-bg-color--hover);
+            // }
+
+            // &:active {
+            //     background-color: var(--btn-bg-color--active);
+            // }
+
+            @include mobile-only {
+                aspect-ratio: 1/1;
+                height: 30px;
+                top: 60px;
+            }
+
 
             &-left {
                 right: 250px;
+
+                @include mobile-only {
+                    right: 25px;
+                }
             }
 
             &-right {
                 left: 250px;
+
+                @include mobile-only {
+                    left: 25px
+                }
             }
         }
 
         &-image {
             aspect-ratio: 1/1;
             height: 60px;
+
+            @include mobile-only {
+                aspect-ratio: 1/1;
+                height: 30px;
+            }
 
             &-left {
                 padding-right: 12%;
@@ -211,6 +288,11 @@ button {
     &__card {
         height: 460px;
         width: 380px;
+
+        @include mobile-only {
+            width: 75%;
+        }
+
         @include center-flex-column();
         overflow: hidden;
     }
@@ -315,21 +397,15 @@ button {
             border-radius: 5px;
             background-color: var(--primary-bg-color);
             color: var(--btn-color);
-            transition: background-color 150ms ease-out;
 
-            &:hover {
-                background-color: var(--btn-bg-color--hover);
-            }
-
-            &:active {
-                background-color: var(--btn-bg-color--active);
-            }
         }
     }
 
 
 }
 
+
+//CSS classes for JS
 .hide {
     // visibility: hidden;
     display: none;
@@ -342,4 +418,22 @@ button {
 
 .index-active {
     opacity: 100%;
+}
+
+.slide-out {
+    translate: 0 0;
+    animation-name: slideOut;
+    animation-duration: 500ms;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+}
+
+.slide-in {
+    translate: 0 0;
+    animation-name: slideIn;
+    animation-duration: 500ms;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
 }
