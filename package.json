@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "sass --watch style.scss:./style.css --style compressed"
+    "sass": "sass --watch style.scss:./css/style.css --style compressed"
   },
   "keywords": [],
   "author": "",

@@ -1,27 +1,63 @@
 //SASS variables
 $body-bg-color: #efefef;
 $primary-bg-color: #3f72ec;
+$btn-bg-color--hover: darken($primary-bg-color, 5%);
+$btn-bg-color--active: darken($primary-bg-color, 20%);
 $secondary-bg-color: white;
-
-$title-color: #343434;
-$text-color: #9b989b;
-
-$test: 69px;
-
+$btn-color: white;
+$image-outline-color: white;
+$title-color: #363636;
+$text-color: #828282;
+$index-bg-color: rgb(78, 108, 180);
 
 //CSS variables
 :root {
     color-scheme: light;
+
+    --body-bg-color:#{$body-bg-color};
+    --primary-bg-color:#{$primary-bg-color};
+    --secondary-bg-color:#{$secondary-bg-color};
+    --btn-color:#{$btn-color};
+    --btn-bg-color--hover:#{$btn-bg-color--hover};
+    --btn-bg-color--active:#{$btn-bg-color--active};
+    --image-outline-color:#{$image-outline-color};
+    --title-color:#{$title-color};
+    --text-color:#{$text-color};
+    --index-bg-color:#{$index-bg-color};
+
 }
 
 //Dark mode
 @media (prefers-color-scheme: dark) {
     //SASS variables 
+    $body-bg-color: #101010;
+    $primary-bg-color: #c08d13;
+    $btn-bg-color--hover: lighten($primary-bg-color, 5%);
+    $btn-bg-color--active: lighten($primary-bg-color, 20%);
+    $secondary-bg-color: black;
+    $btn-color: black;
+    $image-outline-color: black;
+    $title-color: #c9c9c9;
+    $text-color: #c7c9c6;
+    $index-bg-color: rgb(177, 147, 75);
 
     //CSS variables
     :root {
         color-scheme: dark;
+
+        --body-bg-color:#{$body-bg-color};
+        --primary-bg-color:#{$primary-bg-color};
+        --secondary-bg-color:#{$secondary-bg-color};
+        --btn-color:#{$btn-color};
+        --btn-bg-color--hover:#{$btn-bg-color--hover};
+        --btn-bg-color--active:#{$btn-bg-color--active};
+        --image-outline-color:#{$image-outline-color};
+        --title-color:#{$title-color};
+        --text-color:#{$text-color};
+        --index-bg-color:#{$index-bg-color};
+
     }
+
 }
 
 //Maps 
@@ -84,4 +120,226 @@ $breakpoints: (
     padding: 0;
 }
 
+body {
+    background-color: var(--body-bg-color);
+    color: var(--text-color);
+
+    transition:
+        background-color 250ms ease-out,
+        color 250ms ease-out;
+
+    min-height: 100vh;
+    font-family: 'Poppins';
+}
+
+button {
+    border: none;
+    background-color: transparent;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
 //SASS Styling
+.main {
+    min-height: 100vh;
+
+    &__cards-index-container {
+        min-height: inherit;
+        @include center-flex-column(20px)
+    }
+
+
+    &__indexes {
+        background-color: var(--secondary-bg-color);
+        border-radius: 100vmax;
+        min-height: 20px;
+        width: 20%;
+        @include center-flex(15px);
+        position: relative;
+    }
+
+    &__card-index {
+        background-color: var(--index-bg-color);
+        aspect-ratio: 1/1;
+        height: 10px;
+        border-radius: 50%;
+        opacity: 75%;
+    }
+
+    &__buttons {
+        position: relative;
+
+        &-button {
+            aspect-ratio: 1/1;
+            height: 60px;
+            background-color: var(--primary-bg-color);
+            border-radius: 50%;
+            @include center-flex();
+            position: absolute;
+            top: -250px;
+
+
+            &-left {
+                right: 250px;
+            }
+
+            &-right {
+                left: 250px;
+            }
+        }
+
+        &-image {
+            aspect-ratio: 1/1;
+            height: 60px;
+
+            &-left {
+                padding-right: 12%;
+            }
+
+            &-right {
+                padding-left: 12%;
+            }
+        }
+    }
+
+    &__cards {
+        @include center-flex(25px);
+    }
+
+    &__card {
+        height: 460px;
+        width: 380px;
+        @include center-flex-column();
+        overflow: hidden;
+    }
+
+    &__uppercard {
+        background-color: var(--primary-bg-color);
+        border-radius: 25px 25px 0 0;
+        width: 100%;
+        height: 45%;
+        @include center-flex-column();
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            bottom: 0%;
+            left: 0%;
+            aspect-ratio: 1/1;
+            height: 56px;
+            background-color: var(--primary-bg-color);
+            border-bottom-left-radius: 50%;
+            z-index: 2;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0%;
+            left: 0%;
+            aspect-ratio: 1/1;
+            height: 56px;
+            background-color: var(--secondary-bg-color);
+        }
+
+        &-image-container {
+            // overflow: hidden;
+            margin: 10px;
+        }
+
+        &-image {
+            aspect-ratio: 1/1;
+            height: 160px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 50%;
+            padding: 4px;
+            border: 4px solid var(--image-outline-color);
+            transition: border 250ms ease-out;
+            ;
+        }
+    }
+
+    &__lowercard {
+        background-color: var(--secondary-bg-color);
+        border-radius: 0 0 25px 25px;
+        height: 55%;
+        @include center-flex-column();
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0%;
+            right: 0%;
+            aspect-ratio: 1/1;
+            height: 56px;
+            background-color: var(--secondary-bg-color);
+            border-top-right-radius: 50%;
+            z-index: 2;
+
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0%;
+            right: 0%;
+            aspect-ratio: 1/1;
+            height: 56px;
+            background-color: var(--primary-bg-color);
+        }
+
+        &-title {
+            color: var(--title-color);
+            text-align: center;
+            font-size: 22px;
+        }
+
+        &-description {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 200;
+            padding: 5px 10px;
+        }
+
+        &-button {
+            margin: 20px 0;
+            width: 100px;
+            height: 35px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 5px;
+            background-color: var(--primary-bg-color);
+            color: var(--btn-color);
+            transition: background-color 150ms ease-out;
+
+            &:hover {
+                background-color: var(--btn-bg-color--hover);
+            }
+
+            &:active {
+                background-color: var(--btn-bg-color--active);
+            }
+        }
+    }
+
+
+}
+
+.hide {
+    // visibility: hidden;
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+
+.index-active {
+    opacity: 100%;
+}

@@ -14,15 +14,13 @@
   <title>Slider-Carousel in JS</title>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./css/style.css" />
 
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Roboto:wght@100;200;300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet" />
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <!-- Icons -->
   <script src="https://kit.fontawesome.com/904e9ee361.js" crossorigin="anonymous"></script>
 
@@ -35,7 +33,91 @@
 
 <body>
 
+  <main class="main">
+    <div class="main__cards-index-container">
+      <div class="main__cards">
 
+
+
+        <div class="main__card">
+          <div class="main__uppercard">
+            <div class="main__uppercard-image-container">
+              <img src="./ressources/cat-1.jpg" alt="Image of a cute cat" class="main__uppercard-image">
+            </div>
+          </div>
+          <div class="main__lowercard">
+            <h2 class="main__lowercard-title">
+              El gatito
+            </h2>
+            <p class="main__lowercard-description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut asperiores vitae at provident consequuntur
+              dicta in a pariatur quo, accusantium porro quos ratione esse iure fuga similique mollitia itaque ea.
+            </p>
+
+            <button class="main__lowercard-button">View more</button>
+          </div>
+        </div>
+
+
+
+
+        <div class="main__card hide">
+          <div class="main__uppercard">
+            <div class="main__uppercard-image-container">
+              <img src="./ressources/cat-2.jpg" alt="Image of a cute cat" class="main__uppercard-image">
+            </div>
+          </div>
+          <div class="main__lowercard">
+            <h2 class="main__lowercard-title">
+              El gatito
+            </h2>
+            <p class="main__lowercard-description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut asperiores vitae at provident consequuntur
+              dicta in a pariatur quo, accusantium porro quos ratione esse iure fuga similique mollitia itaque ea.
+            </p>
+
+            <button class="main__lowercard-button">View more</button>
+          </div>
+        </div>
+
+
+
+
+        <div class="main__card hide">
+          <div class="main__uppercard">
+            <div class="main__uppercard-image-container">
+              <img src="./ressources/cat-3.jpg" alt="Image of a cute cat" class="main__uppercard-image">
+            </div>
+          </div>
+          <div class="main__lowercard">
+            <h2 class="main__lowercard-title">
+              El gatito
+            </h2>
+            <p class="main__lowercard-description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut asperiores vitae at provident consequuntur
+              dicta in a pariatur quo, accusantium porro quos ratione esse iure fuga similique mollitia itaque ea.
+            </p>
+
+            <button class="main__lowercard-button">View more</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="main__buttons">
+        <button type="button" class="main__buttons-button main__buttons-button-left">
+          <img src="./ressources/left-chevron.svg" alt="" class="main__buttons-image main__buttons-image-left">
+        </button>
+        <button type="button" class="main__buttons-button main__buttons-button-right">
+          <img src="./ressources/right-chevron.svg" alt="" class="main__buttons-image main__buttons-image-right">
+        </button>
+      </div>
+      <div class="main__indexes">
+
+        <div class="main__card-index index-active"></div>
+        <div class="main__card-index"></div>
+        <div class="main__card-index"></div>
+      </div>
+  </main>
 
 
 </body>
