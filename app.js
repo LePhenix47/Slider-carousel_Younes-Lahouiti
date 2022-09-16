@@ -32,23 +32,26 @@ function changeSlider(e) {
   //Here we'll manage the next or previous slide
 
   let userClicksNextOnLastSlide =
-    sliderData.slideOutIndex + sliderData.direction > slides.length
-      ? true
-      : false;
+    sliderData.slideOutIndex + sliderData.direction > slides.length;
   let userClicksPreviousOnFirstSlide =
-    sliderData.slideOutIndex + sliderData.direction < 0 ? true : false;
+    sliderData.slideOutIndex + sliderData.direction < 0;
 
   if (userClicksNextOnLastSlide) {
     sliderData.slideInIndex = 0;
   } else if (userClicksPreviousOnFirstSlide) {
     sliderData.slideInIndex = slides.length - 1;
   } else {
+    //Just pass to the previous/next slide
     sliderData.slideInIndex = sliderData.slideOutIndex + sliderData.direction;
   }
 
   console.group("Slider data");
   console.log(sliderData);
   console.groupEnd("Slider data");
+
+  slideOut();
 }
+
+function slideOut() {}
 
 console.log(slides);
