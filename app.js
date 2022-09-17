@@ -4,6 +4,7 @@ const rightButton = document.querySelector(".main__buttons-button-right");
 const slidesNodeList = document.getElementsByClassName("main__card"); //NodeList → Array-like but not exactly an array
 const slides = Array.from(slidesNodeList);
 
+//This object will handle all the important properties of our slider-carousel
 const sliderData = {
   direction: 0,
   slideOutIndex: 0,
@@ -20,6 +21,8 @@ function changeSlider(e) {
   If the user clicks on the left button → direction = -1 
   Else the direction = 1
 */
+  e.target.disabled = true;
+
   this.classList.contains("main__buttons-button-right")
     ? (sliderData.direction = 1)
     : (sliderData.direction = -1);
@@ -32,7 +35,7 @@ function changeSlider(e) {
   //Here we'll manage the next or previous slide
 
   let userClicksNextOnLastSlide =
-    sliderData.slideOutIndex + sliderData.direction > slides.length;
+    sliderData.slideOutIndex + sliderData.direction > slides.length - 1;
   let userClicksPreviousOnFirstSlide =
     sliderData.slideOutIndex + sliderData.direction < 0;
 
@@ -49,9 +52,50 @@ function changeSlider(e) {
   console.log(sliderData);
   console.groupEnd("Slider data");
 
-  slideOut();
+  const { direction, slideOutIndex, slideInIndex } = sliderData;
+
+  indexElements[slideOutIndex].classList?.remove("index-active");
+  console.group("SlideOut info: ");
+  slideOut(slides[slideOutIndex], direction);
+  console.groupEnd("SlideOut info: ");
+
+  indexElements[slideInIndex].classList.add("index-active");
+  console.group("SlideIn info: ");
+  console.log(slideInIndex === 2 ? "Last slide" : "");
+  slideIn(slides[slideInIndex], direction);
+  console.groupEnd("SlideIn info: ");
+
+  setTimeout(() => {
+    e.target.disabled = false;
+  }, 750);
 }
 
-function slideOut() {}
+function slideOut(slide, direction) {
+  let leftOrRight = direction === -1 ? "right" : "left";
+
+  let slideOutAnimationClassName = `slide-out-${leftOrRight}`;
+  slide.classList.add(slideOutAnimationClassName);
+
+  setTimeout(() => {
+    slide.classList.add("hide");
+    slide.classList.remove(slideOutAnimationClassName);
+  }, 750);
+}
+
+function slideIn(slide, direction) {
+  let leftOrRight = direction === -1 ? "left" : "right";
+  console.log("index = ", slides.indexOf(slide));
+
+  let slideInAnimationClassName = `slide-in-${leftOrRight}`;
+  setTimeout(() => {
+    slide.classList.remove("hide");
+  }, 750);
+
+  slide.classList.add(slideInAnimationClassName);
+
+  slide.addEventListener("animationend", () => {
+    slide.classList.remove(slideInAnimationClassName);
+  });
+}
 
 console.log(slides);
